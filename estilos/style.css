@@ -3,3 +3,34 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    width: 100%;
+    height: 100vh;
+
+    background: #121212;
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    font-size: 1em;
+}
+
+main {
+    width: 90vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: auto;
+
+    background: rgb(140, 142, 184);
+    color: #121212;
+}
+
+div {
+    width: 80vw;
+    min-height: 25vh;
+    background: rgb(233, 225, 225);
+}
