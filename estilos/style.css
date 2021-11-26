@@ -2,8 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    overflow-y: hidden;
 }
 
 body {
@@ -12,23 +10,14 @@ body {
     background: #ffffff;
 
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     align-items: center;
 
     font-size: 1em;
 }
 
-main {
-
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    margin: auto;
-
-    color: #121212;
-
-    border-radius: 10px;
-    box-shadow: 0 0 2px 2px #121212;
+header, footer {
+    text-align: center;
 }
 
 section {
@@ -36,48 +25,71 @@ section {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+}
 
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px rgb(8, 150, 8);
+img {
+    width: 50vw;
+    height: auto;
+}
 
-    
-    min-height: 80vh;
-    background: rgb(233, 225, 225);
+#conteudo {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 #titulo {
-    color: black;
-    margin: auto;
-    text-align: center;
+    position: absolute;
+    bottom: 60px;
 
-    margin: 0 0 20px 0;
+    width: 50vw;
+
+    padding: 20px 0 10px 0;
+
+    background-image: linear-gradient(rgba(209, 209, 209, 0), rgb(26, 26, 26));
+
+    color: rgb(255, 255, 255);
+    font-size: calc(1em + 1.6vw);
+    text-shadow: -1px -1px 1px black;
+    text-align: center;
 }
 
 #boxName {
-    width: 40vw;
-    
-    padding: 10px;
+    margin: 20px 0 0 0;
+    padding: 10px 50px 10px 50px;
 
     border-radius: 10px;
     box-shadow: 2px 2px 2px rgb(8, 150, 8);
-}
-
-#divBtnNext {
-    display: flex;
-    
+    font-size: 1.2em;
+    text-align: center;
 }
 
 #btnNext {
     background-image: radial-gradient(rgb(8, 129, 8), rgb(12, 173, 12));
     color: #121212;
 
-    height: 60px;
+    padding: 20px 30px 20px 30px;
+    margin: 50px 0 0 150px;
 
     border-radius: 15px;
     box-shadow: 2px 2px 2px #121212;
+
+    font-size: 1.5em;
 }
 
 #btnNext:hover {
     background: rgb(11, 190, 11);
     
+}
+
+@media only screen and (max-width: 768px) {
+    img {
+        width: 80vw;
+        height: auto;
+    }
+    #titulo {
+        width: 80vw;
+    }
 }
