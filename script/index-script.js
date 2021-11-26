@@ -1,15 +1,35 @@
 addEventListener('load', pageLoad)
 
+let nome = ''
+
+let respostas = []
+
+let perguntas = {
+    bloco_1: {
+        alternativa_1: 'Batatinha Frita 1, 2, 3',
+        alternativa_2: 'Colméia de Açucar',
+        alternativa_3: 'Briga a Noite',
+        alternativa_4: 'Cabo de Guerra',
+        alternativa_5: 'Bolinha de Gude',
+        alternativa_6: 'Ponte de Vidro',
+        alternativa_7: 'Jogo da Lula'
+    },
+    bloco_2: {
+        
+    }
+}
+
 function pageLoad() {
     
     let conteudo = document.querySelector('#conteudo')
-    let alternativas = document.querySelector('#ulRespotas')
+    let alternativas = document.querySelector('#ulRespostas')
     let btnNext = document.querySelector('#divBtnNext')
     
-    initQuizz(conteudo, btnNext)
-    let nome = addNome()
-    alert(nome)
-
+    if(nome.length == 0) {
+        initQuizz(conteudo, btnNext)
+    } else {
+        page1(conteudo, alternativas, btnNext)
+    }
 }
 
 function initQuizz(c,b) {
@@ -46,11 +66,37 @@ function initQuizz(c,b) {
     c.appendChild(nomeInput)
     b.appendChild(btnNext)
 
-    btnNext.addEventListener('click', addNome)
-    
+    btnNext.addEventListener('click', function(){
+        nome = document.querySelector('#boxName').value
+        if(nome.length != 0) {
+            pageLoad()
+        } else {
+            alert('[ERRO] Caixa Vazia')
+        }
+    }) 
 }
 
-function addNome() {
-    let nome = querySelector('#boxName').value
-    return nome
+function page1(c,a,b) {
+    divImg.remove()
+    descrição.remove()
+    boxName.remove()
+    btnNext.remove()
+
+    //let progressBar = document.createElement('')
+    let pergunta = document.createElement('h1')
+    pergunta.setAttribute('id', 'pergunta')
+
+    let contador = Object.values(perguntas.bloco_1)
+    for(let i = 0; i < contador.length; i++){
+        let opções = document.createElement('li')
+        opções.innerText = `${contador[i]}`
+        a.appendChild(opções)
+    }
+    pergunta.innerHTML = 'Você acha que ganharia que jogos?'
+
+    c.appendChild(pergunta)
+    
+    opções.addEventListener('click', function() {
+        alert('ksfd')
+    })
 }
