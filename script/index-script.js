@@ -13,14 +13,20 @@ function pageLoad() {
 }
 
 function initQuizz(c,b) {
+    let titulo = document.createElement('h1')
     let nomeInput = document.createElement('input')
     let btnNext = document.createElement('input')
 
+    titulo.setAttribute('id', 'titulo')
     nomeInput.setAttribute('id', 'boxName')
+    nomeInput.setAttribute('placeholder', 'Digite seu nome aqui')
     btnNext.setAttribute('type', 'button')
     btnNext.setAttribute('id', 'btnNext')
-    btnNext.setAttribute('value', 'Next')
+    btnNext.setAttribute('value', 'Iniciar Quiz')
 
+    titulo.innerHTML = 'Olá, Faça seu Quiz!'
+
+    c.appendChild(titulo)
     c.appendChild(nomeInput)
     b.appendChild(btnNext)
 }
