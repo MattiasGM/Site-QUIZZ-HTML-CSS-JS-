@@ -6,30 +6,51 @@ function pageLoad() {
     let alternativas = document.querySelector('#ulRespotas')
     let btnNext = document.querySelector('#divBtnNext')
     
-    
-
-    let nome = initQuizz(conteudo, btnNext)
+    initQuizz(conteudo, btnNext)
+    let nome = addNome()
+    alert(nome)
 
 }
 
 function initQuizz(c,b) {
+    let divImg = document.createElement('div')
+    let img = document.createElement('img')
     let titulo = document.createElement('h1')
+    let descrição = document.createElement('div')
+    let descriçãoTitulo = document.createElement('h2')
+    let descriçãoParagrafo = document.createElement('p')
     let nomeInput = document.createElement('input')
     let btnNext = document.createElement('input')
-    let img = document.createElement('img')
-
+    
+    divImg.setAttribute('id', 'divImg')
+    img.setAttribute('src', 'imagens/round-6.jpg')
     titulo.setAttribute('id', 'titulo')
+    descrição.setAttribute('id', 'descrição')
     nomeInput.setAttribute('id', 'boxName')
     nomeInput.setAttribute('placeholder', 'Digite seu nome aqui')
     btnNext.setAttribute('type', 'button')
     btnNext.setAttribute('id', 'btnNext')
     btnNext.setAttribute('value', 'Iniciar Quiz')
-    img.setAttribute('src', 'imagens/round-6.jpg')
 
-    titulo.innerHTML = 'Descubra quem você seria em Round 6!'
+    titulo.innerHTML = 'Descubra quem você seria em Squid Game/Round 6!'
+    descriçãoTitulo.innerHTML = 'Vamos Descobrir!'
+    descriçãoParagrafo.innerHTML = '-Oh II-nam <br> -Ali Abdul <br> -Sang-woo <br> -Sae-Byeok <br> -Gi-hun <br> -Mi-nyeo <br> -Deok-su <br> -Ji-yeong <br> -Jun-ho'
 
-    c.appendChild(img)
-    c.appendChild(titulo)
+    divImg.appendChild(img)
+    divImg.appendChild(titulo)
+    descrição.appendChild(descriçãoTitulo)
+    descrição.appendChild(descriçãoParagrafo)
+
+    c.appendChild(divImg)
+    c.appendChild(descrição)
     c.appendChild(nomeInput)
     b.appendChild(btnNext)
+
+    btnNext.addEventListener('click', addNome)
+    
+}
+
+function addNome() {
+    let nome = querySelector('#boxName').value
+    return nome
 }

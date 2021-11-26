@@ -17,7 +17,11 @@ body {
 }
 
 header, footer {
+    width: 100vw;
+    padding: 5px;
+    background-image: linear-gradient(rgba(77, 77, 124, 0.911), rgb(154, 154, 216));
     text-align: center;
+    font-size: calc(15px + 1.5vw);
 }
 
 section {
@@ -28,8 +32,16 @@ section {
 }
 
 img {
-    width: 50vw;
+    width: 60vw;
     height: auto;
+}
+
+#sectionQuizz {
+    width: 90vw;
+    margin: auto;
+    background: rgb(236, 231, 231);
+    padding: 10px;
+    box-shadow: 0 0 5px #121212c5;
 }
 
 #conteudo {
@@ -40,11 +52,15 @@ img {
     align-items: center;
 }
 
+#divImg {
+    position: relative;
+}
+
 #titulo {
     position: absolute;
-    bottom: 60px;
+    bottom: 0;
 
-    width: 50vw;
+    width: 60vw;
 
     padding: 20px 0 10px 0;
 
@@ -56,40 +72,62 @@ img {
     text-align: center;
 }
 
+#descrição {
+    display: flex;
+    flex-flow: column nowrap;
+
+    margin: 10px 25vw 0 0;
+
+    color: rgba(43, 43, 43, 0.904);
+    font-size: calc(12px + 1.2vw);
+}
+
 #boxName {
     margin: 20px 0 0 0;
-    padding: 10px 50px 10px 50px;
+    padding: 10px 15vw 10px 15vw;
 
     border-radius: 10px;
-    box-shadow: 2px 2px 2px rgb(8, 150, 8);
+    box-shadow: 2px 2px 2px rgb(17, 8, 150);
     font-size: 1.2em;
     text-align: center;
 }
 
 #btnNext {
-    background-image: radial-gradient(rgb(8, 129, 8), rgb(12, 173, 12));
-    color: #121212;
+    background-image: radial-gradient(rgb(61, 82, 129), rgb(99, 114, 179));
+    color: #ffffff;
 
     padding: 20px 30px 20px 30px;
-    margin: 50px 0 0 150px;
+    margin: 50px 0 20px 150px;
 
     border-radius: 15px;
     box-shadow: 2px 2px 2px #121212;
 
     font-size: 1.5em;
+    transition: .3s;
 }
 
 #btnNext:hover {
-    background: rgb(11, 190, 11);
-    
+    background: rgb(118, 153, 216);
+    color: black;
+    transform: translateY(-5px);
+    transition: .3s;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
     img {
-        width: 80vw;
+        width: 100vw;
         height: auto;
     }
+    #sectionQuizz {
+        width: 100vw;
+        background: rgb(236, 231, 231);
+        padding: 10px;
+    }
     #titulo {
-        width: 80vw;
+        width: 100vw;
+        font-size: calc(20px + 2vw);
+    }
+    #descrição {
+        margin: 10px 35vw 0 0;
     }
 }
