@@ -146,7 +146,7 @@ function page(c,a) { // página genérica de quiz
     boxName.remove()
     btnNext.remove()
 
-    CreatProgressBar(c)
+    c.appendChild(CreatProgressBar(c))
     let boasVindas = document.createElement('p')
     let pergunta = document.createElement('h1')
     pergunta.setAttribute('id', 'pergunta')
@@ -192,14 +192,13 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
         progressBar.setAttribute('type', 'button')
         if(i < max) {
             progressBar.setAttribute('value', i)
+            progressBar.setAttribute('id', `progressBar${i}`)
         } else {
             progressBar.setAttribute('value', 'AD')
+            progressBar.setAttribute('id', `progressBarAD`)
         }
-        progressBar.setAttribute('id', `progressBar${i}`)
         progressBar.setAttribute('class', 'progressBar')
         divProgressBar.appendChild(progressBar)
     }
-
-    c.appendChild(divProgressBar)
-    return
+    return divProgressBar
 }
