@@ -4,6 +4,7 @@ addEventListener('load', pageLoad)
 let titleQuiz = 'Descubra quem você seria em Squid Game/Round 6!'
 let descriçãoQuiz = '-Oh II-nam <br> -Ali Abdul <br> -Sang-woo <br> -Sae-Byeok <br> -Gi-hun <br> -Mi-nyeo <br> -Deok-su <br> -Ji-yeong <br> -Jun-ho'
 let imgQuiz = 'imagens/round-6.jpg'
+let max = 10 // quantas perguntas o quiz vai possuir -- + de 10 ele pode ter 2 linhas ou mais de progressBar
 //------------------------------------------------\\
 
 let nome = ''
@@ -122,10 +123,10 @@ function CreatProgressBar(c) {
     let divProgressBar = document.createElement('div')
     divProgressBar.setAttribute('id', 'divProgressBar')
 
-    for(let i = 1; i <= 10; i++){
+    for(let i = 1; i <= max; i++){
         let progressBar = document.createElement('input')
         progressBar.setAttribute('type', 'button')
-        if(i < 10) {
+        if(i < max) {
             progressBar.setAttribute('value', i)
         } else {
             progressBar.setAttribute('value', 'AD')
