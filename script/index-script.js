@@ -100,7 +100,7 @@ function page(c,a) { // página genérica de quiz
 
     boasVindas.innerHTML = `Bem-Vindo, ${nome}.`
     pergunta.appendChild(boasVindas)
-    pergunta.innerHTML += `${verificarAlternativas(contadorProgressBar)}`
+    pergunta.innerHTML += `${verificarPerguntas(contadorProgressBar)}`
     
     c.appendChild(pergunta)
 
@@ -113,19 +113,22 @@ function page(c,a) { // página genérica de quiz
 }
 
 function verificarAlternativas(cpb) {
-    let alternativa = ''
-    let pergunta = ''
-
     for(let i = 1; i <= max; i++) {
         if(cpb == i) {
-            alternativa = alternativas[i]
-            pergunta = perguntas[i]
+            let alternativa = alternativas[i]
+            return alternativa
         }
     }
-
-    return alternativa
 }
 
+function verificarPerguntas(cpb) {
+    for(let i = 1; i <= max; i++) {
+        if(cpb == i) {
+            let pergunta = perguntas[i]
+            return pergunta
+        }
+    }
+}
 
 function CreatProgressBar(c) { // barra de contagem das perguntas
     let divProgressBar = document.createElement('div')
