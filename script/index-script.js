@@ -7,29 +7,26 @@ let imgQuiz = 'imagens/round-6.jpg'
 let max = 10 // quantas perguntas o quiz vai possuir -- + de 10 ele pode ter 2 linhas ou mais de progressBar
 //------------------------------------------------\\
 
-let nome = ''
-
-let respostas = []
+let nome = '', contadorProgressBar = 0
 
 let perguntas = {
-    pergunta_1: `Você acha que ganharia quais jogos?`,
-    pergunta_2: ''
-}
-
-let alternativas = {
-    bloco_1: {
-        alternativa_1: 'Batatinha Frita 1, 2, 3',
-        alternativa_2: 'Colméia de Açucar',
-        alternativa_3: 'Briga a Noite',
-        alternativa_4: 'Cabo de Guerra',
-        alternativa_5: 'Bolinha de Gude',
-        alternativa_6: 'Ponte de Vidro',
-        alternativa_7: 'Jogo da Lula'
+        1: 'Você acha que ganharia quais jogos?',
+        2: ''
     },
-    bloco_2: {
-        
+    alternativas = {
+        1: {
+            alternativa_1: 'Batatinha Frita 1, 2, 3',
+            alternativa_2: 'Colméia de Açucar',
+            alternativa_3: 'Briga a Noite',
+            alternativa_4: 'Cabo de Guerra',
+            alternativa_5: 'Bolinha de Gude',
+            alternativa_6: 'Ponte de Vidro',
+            alternativa_7: 'Jogo da Lula'
+        },
+        2: {
+            
+        }
     }
-}
 
 function pageLoad() {
     
@@ -89,6 +86,8 @@ function initQuizz(c,b) {
 }
 
 function page(c,a) { // página genérica de quiz
+    contadorProgressBar++
+
     divImg.remove()
     descrição.remove()
     boxName.remove()
@@ -101,25 +100,31 @@ function page(c,a) { // página genérica de quiz
 
     boasVindas.innerHTML = `Bem-Vindo, ${nome}.`
     pergunta.appendChild(boasVindas)
-    pergunta.innerHTML += `${/*verificarAlternativas()*/perguntas.pergunta_1}`
+    pergunta.innerHTML += `${verificarAlternativas(contadorProgressBar)}`
     
     c.appendChild(pergunta)
 
-    let contador = Object.values(/*verificarAlternativas()*/alternativas.bloco_1) // alternativas em lista para o quiz
+    let contador = Object.values(verificarAlternativas(contadorProgressBar)) // alternativas em lista para o quiz
     for(let i = 0; i < contador.length; i++){
         let opções = document.createElement('li')
         opções.innerText = `${contador[i]}`
         a.appendChild(opções)
     }
-    
-    opções.addEventListener('click', function() {
-        alert('ksfd')
-    })
 }
 
-//function verificarAlternativas() {
+function verificarAlternativas(cpb) {
+    let alternativa = ''
+    let pergunta = ''
 
-//}
+    for(let i = 1; i <= max; i++) {
+        if(cpb == i) {
+            alternativa = alternativas[i]
+            pergunta = perguntas[i]
+        }
+    }
+
+    return alternativa
+}
 
 
 function CreatProgressBar(c) { // barra de contagem das perguntas
