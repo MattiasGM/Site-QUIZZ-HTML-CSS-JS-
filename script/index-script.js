@@ -12,7 +12,7 @@ let nome = ''
 let respostas = []
 
 let perguntas = {
-    pergunta_1: 'Você acha que ganharia que jogos?',
+    pergunta_1: `Você acha que ganharia quais jogos?`,
     pergunta_2: ''
 }
 
@@ -95,10 +95,13 @@ function page(c,a) { // página genérica de quiz
     btnNext.remove()
 
     CreatProgressBar(c)
+    let boasVindas = document.createElement('p')
     let pergunta = document.createElement('h1')
     pergunta.setAttribute('id', 'pergunta')
 
-    pergunta.innerHTML = `${/*verificarAlternativas()*/perguntas.pergunta_1}`
+    boasVindas.innerHTML = `Bem-Vindo, ${nome}.`
+    pergunta.appendChild(boasVindas)
+    pergunta.innerHTML += `${/*verificarAlternativas()*/perguntas.pergunta_1}`
     
     c.appendChild(pergunta)
 
@@ -119,7 +122,7 @@ function page(c,a) { // página genérica de quiz
 //}
 
 
-function CreatProgressBar(c) {
+function CreatProgressBar(c) { // barra de contagem das perguntas
     let divProgressBar = document.createElement('div')
     divProgressBar.setAttribute('id', 'divProgressBar')
 
