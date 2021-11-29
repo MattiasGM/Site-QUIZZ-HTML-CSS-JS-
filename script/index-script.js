@@ -1,10 +1,21 @@
 addEventListener('load', pageLoad)
 
+//----------  Configurações do Quiz -------------\\
+let titleQuiz = 'Descubra quem você seria em Squid Game/Round 6!'
+let descriçãoQuiz = '-Oh II-nam <br> -Ali Abdul <br> -Sang-woo <br> -Sae-Byeok <br> -Gi-hun <br> -Mi-nyeo <br> -Deok-su <br> -Ji-yeong <br> -Jun-ho'
+let imgQuiz = 'imagens/round-6.jpg'
+//------------------------------------------------\\
+
 let nome = ''
 
 let respostas = []
 
 let perguntas = {
+    pergunta_1: 'Você acha que ganharia que jogos?',
+    pergunta_2: ''
+}
+
+let alternativas = {
     bloco_1: {
         alternativa_1: 'Batatinha Frita 1, 2, 3',
         alternativa_2: 'Colméia de Açucar',
@@ -28,7 +39,7 @@ function pageLoad() {
     if(nome.length == 0) {
         initQuizz(conteudo, btnNext)
     } else {
-        page1(conteudo, alternativas, btnNext)
+        page(conteudo, alternativas)
     }
 }
 
@@ -43,7 +54,7 @@ function initQuizz(c,b) {
     let btnNext = document.createElement('input')
     
     divImg.setAttribute('id', 'divImg')
-    img.setAttribute('src', 'imagens/round-6.jpg')
+    img.setAttribute('src', imgQuiz)
     titulo.setAttribute('id', 'titulo')
     descrição.setAttribute('id', 'descrição')
     nomeInput.setAttribute('id', 'boxName')
@@ -52,9 +63,9 @@ function initQuizz(c,b) {
     btnNext.setAttribute('id', 'btnNext')
     btnNext.setAttribute('value', 'Iniciar Quiz')
 
-    titulo.innerHTML = 'Descubra quem você seria em Squid Game/Round 6!'
+    titulo.innerHTML = `${titleQuiz}`
     descriçãoTitulo.innerHTML = 'Vamos Descobrir!'
-    descriçãoParagrafo.innerHTML = '-Oh II-nam <br> -Ali Abdul <br> -Sang-woo <br> -Sae-Byeok <br> -Gi-hun <br> -Mi-nyeo <br> -Deok-su <br> -Ji-yeong <br> -Jun-ho'
+    descriçãoParagrafo.innerHTML = `${descriçãoQuiz}`
 
     divImg.appendChild(img)
     divImg.appendChild(titulo)
@@ -76,27 +87,54 @@ function initQuizz(c,b) {
     }) 
 }
 
-function page1(c,a,b) {
+function page(c,a) { // página genérica de quiz
     divImg.remove()
     descrição.remove()
     boxName.remove()
     btnNext.remove()
 
-    //let progressBar = document.createElement('')
+    CreatProgressBar(c)
     let pergunta = document.createElement('h1')
     pergunta.setAttribute('id', 'pergunta')
 
-    let contador = Object.values(perguntas.bloco_1)
+    pergunta.innerHTML = `${/*verificarAlternativas()*/perguntas.pergunta_1}`
+    
+    c.appendChild(pergunta)
+
+    let contador = Object.values(/*verificarAlternativas()*/alternativas.bloco_1) // alternativas em lista para o quiz
     for(let i = 0; i < contador.length; i++){
         let opções = document.createElement('li')
         opções.innerText = `${contador[i]}`
         a.appendChild(opções)
     }
-    pergunta.innerHTML = 'Você acha que ganharia que jogos?'
-
-    c.appendChild(pergunta)
     
     opções.addEventListener('click', function() {
         alert('ksfd')
     })
+}
+
+//function verificarAlternativas() {
+
+//}
+
+
+function CreatProgressBar(c) {
+    let divProgressBar = document.createElement('div')
+    divProgressBar.setAttribute('id', 'divProgressBar')
+
+    for(let i = 1; i <= 10; i++){
+        let progressBar = document.createElement('input')
+        progressBar.setAttribute('type', 'button')
+        if(i < 10) {
+            progressBar.setAttribute('value', i)
+        } else {
+            progressBar.setAttribute('value', 'AD')
+        }
+        progressBar.setAttribute('id', `progressBar${i}`)
+        progressBar.setAttribute('class', 'progressBar')
+        divProgressBar.appendChild(progressBar)
+    }
+
+    c.appendChild(divProgressBar)
+    return
 }

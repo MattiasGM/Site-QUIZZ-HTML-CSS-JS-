@@ -1,3 +1,8 @@
+:root {
+    --primary: #2148f7;
+    --secundary: #586fd1;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +25,7 @@ body {
 header, footer {
     width: 100vw;
     padding: 5px;
-    background-image: linear-gradient(rgba(77, 96, 124, 0.911), rgb(154, 176, 216));
+    background-image: linear-gradient(var(--primary), var(--secundary));
     text-align: center;
     font-size: calc(15px + 1.5vw);
 }
@@ -34,7 +39,9 @@ section {
 
 img {
     width: 60vw;
+    max-width: 700px;
     height: auto;
+    margin: 10px 0 0 0;
 }
 
 ul {
@@ -43,6 +50,7 @@ ul {
 
 ul li {
     width: 80vw;
+    max-width: 700px;
     position: relative;
     display: flex;
     flex-flow: column nowrap;
@@ -63,16 +71,17 @@ ul li {
 }
 
 ul li:hover {
-    background: rgba(80, 117, 197, 0.849);
+    background: var(--secundary);
     color: rgb(159, 255, 255);
     transition: 0.3s;
 }
 
 #sectionQuizz {
     width: 90vw;
+    max-width: 700px;
     margin: auto;
     background: rgb(236, 231, 231);
-    padding: 10px;
+    padding: 0px;
     box-shadow: 0 0 5px #121212c5;
 }
 
@@ -93,10 +102,11 @@ ul li:hover {
     bottom: 0;
 
     width: 60vw;
+    max-width: 700px;
 
-    padding: 20px 0 10px 0;
+    padding: 30px 0 10px 0;
 
-    background-image: linear-gradient(rgba(209, 209, 209, 0), rgb(26, 26, 26));
+    background-image: linear-gradient(rgba(209, 209, 209, 0), #002fff);
 
     color: rgb(255, 255, 255);
     font-size: calc(1em + 1.6vw);
@@ -147,12 +157,32 @@ ul li:hover {
 
 #pergunta {
     width: 90vw;
-    background: rgba(80, 105, 173, 0.904);
+    max-width: 700px;
+    background: var(--primary);
     color: white;
     margin: 0 0 5px 0;
     padding: 30px 0 30px 0;
     font-size: 2em;
     text-align: center;
+}
+
+#divProgressBar {
+    width: 90vw;
+    max-width: 700px;
+    background: var(--secundary);
+}
+
+.progressBar{
+    background: var(--primary);
+    color: rgba(255, 255, 255, 0.63);
+    padding: calc(5px + 0.5vw) calc(10px + 1vw) calc(5px + 0.5vw) calc(10px + 1vw);
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    font-size: calc(10px + 1vw);
+}
+.progressBar:hover {
+    background: var(--secundary);
 }
 
 .checked {
@@ -162,13 +192,17 @@ ul li:hover {
 @media only screen and (max-width: 1000px) {
     img{
         width: 80vw;
+        max-width: 700px;
         height: auto;
+        margin: 5px 0 0 0;
     }
     ul li{
         width: 90vw;
+        max-width: 700px;
     }
     #sectionQuizz {
         width: 90vw;
+        max-width: 700px;
         background: rgb(236, 231, 231);
         padding: 0px;
     }
@@ -181,6 +215,12 @@ ul li:hover {
     }
     #pergunta {
         width: 90vw;
+        max-width: 700px;
+    }
+    .progressBar{
+        background: var(--primary);
+        padding: calc(5px + 1vw) calc(10px + 1vw) calc(5px + 1vw) calc(10px + 1vw);
+        font-size: calc(10px + 1vw);
     }
 }
 
@@ -188,6 +228,7 @@ ul li:hover {
     img {
         width: 100vw;
         height: auto;
+        margin: 0;
     }
     ul li {
         width: 99vw;
@@ -206,5 +247,14 @@ ul li:hover {
     }
     #pergunta {
         width: 100vw;
+    }
+    #divProgressBar {
+        width: 100vw;
+        background: var(--secundary);
+    }
+    .progressBar{
+        background: var(--primary);
+        padding: calc(3px + 0.3vw) calc(5px + 0.5vw) calc(3px + 0.3vw) calc(5px + 0.5vw);
+        font-size: calc(12px + 1.2vw);
     }
 }
