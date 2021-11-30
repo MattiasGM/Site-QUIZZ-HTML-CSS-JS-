@@ -1,6 +1,8 @@
 :root {
-    --primary: #2148f7;
-    --secundary: #586fd1;
+    --primary: #112479;
+    --progressBarAtual: #7b93ff;
+    --secundary: #414e86;
+    --progressBarPassada: #002fff;
 }
 
 * {
@@ -106,7 +108,7 @@ ul li:hover {
 
     padding: 30px 0 10px 0;
 
-    background-image: linear-gradient(rgba(209, 209, 209, 0), #002fff);
+    background-image: linear-gradient(rgba(209, 209, 209, 0), #000000);
 
     color: rgb(255, 255, 255);
     font-size: calc(1em + 1.6vw);
@@ -118,15 +120,17 @@ ul li:hover {
     display: flex;
     flex-flow: column nowrap;
 
-    margin: 10px 25vw 0 0;
+    margin: 10px 20vw 0 0;
 
     color: rgba(43, 43, 43, 0.904);
     font-size: calc(12px + 1.2vw);
 }
 
 #boxName {
+    width: 80vw;
+    max-width: 600px;
     margin: 20px 0 0 0;
-    padding: 10px 15vw 10px 15vw;
+    padding: 10px 0 10px 0;
 
     border-radius: 10px;
     box-shadow: 2px 2px 2px rgb(17, 8, 150);
@@ -135,11 +139,14 @@ ul li:hover {
 }
 
 #btnNext {
+    width: 40vw;
+    max-width: 400px;
+
     background-image: radial-gradient(rgb(61, 82, 129), rgb(99, 114, 179));
     color: #ffffff;
 
-    padding: 20px 30px 20px 30px;
-    margin: 50px 0 20px 150px;
+    padding: 20px 0 20px 0;
+    margin: 50px 0 20px 0;
 
     border-radius: 15px;
     box-shadow: 2px 2px 2px #121212;
@@ -181,8 +188,27 @@ ul li:hover {
     border-radius: 5px;
     font-size: calc(10px + 1vw);
 }
+.progressBarAtual{
+    background: var(--progressBarAtual);
+    color: rgba(255, 255, 255, 0.63);
+    padding: calc(5px + 0.5vw) calc(10px + 1vw) calc(5px + 0.5vw) calc(10px + 1vw);
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    font-size: calc(10px + 1vw);
+}
+.progressBarPassada{
+    background: var(--progressBarPassada);
+    color: rgba(255, 255, 255, 0.63);
+    padding: calc(5px + 0.5vw) calc(10px + 1vw) calc(5px + 0.5vw) calc(10px + 1vw);
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    font-size: calc(10px + 1vw);
+}
+
 .progressBar:hover {
-    background: var(--secundary);
+    pointer-events: none;
 }
 
 .checked {
@@ -244,6 +270,12 @@ ul li:hover {
     }
     #descrição {
         margin: 10px 35vw 0 0;
+    }
+    #boxName{
+        padding: 20px 5vw 20px 5vw;
+    }
+    #btnNext{
+        padding: 20px 5vw 20px 5vw;
     }
     #pergunta {
         width: 100vw;
