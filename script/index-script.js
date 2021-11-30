@@ -110,6 +110,7 @@ function initQuizz(c,b) {
     descrição.setAttribute('id', 'descrição')
     nomeInput.setAttribute('id', 'boxName')
     nomeInput.setAttribute('placeholder', 'Digite seu nome aqui')
+    nomeInput.setAttribute('maxlength', '20')
     btnNext.setAttribute('type', 'button')
     btnNext.setAttribute('id', 'btnNext')
     btnNext.setAttribute('value', 'Iniciar Quiz')
@@ -156,7 +157,10 @@ function page(c,a) { // página genérica de quiz
     pergunta.innerHTML += `${verificarPerguntas(contadorProgressBar)}`
     
     c.appendChild(pergunta)
+    opções(a)
+}
 
+function opções(a) {
     let contador = Object.values(verificarAlternativas(contadorProgressBar)) // alternativas em lista para o quiz
     for(let i = 0; i < contador.length; i++){
         let opções = document.createElement('li')
