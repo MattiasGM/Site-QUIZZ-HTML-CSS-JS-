@@ -169,6 +169,7 @@ function opções(a) {
     }
 }
 
+
 function verificarAlternativas(cpb) {
     for(let i = 1; i <= max; i++) {
         if(cpb == i) {
