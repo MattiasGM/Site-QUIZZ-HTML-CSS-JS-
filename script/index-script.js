@@ -142,24 +142,29 @@ function initQuizz(c,b) {
 function page(c,a) { // página genérica de quiz
     contadorProgressBar++
 
-    if(contadorProgressBar <= 1){
-        divImg.remove()
-        descrição.remove()
-        boxName.remove()
-        btnNext.remove()
-
-        CreatProgressBar(c)
-        c.appendChild(verificarPerguntas(contadorProgressBar))
-        opções(a)
-        //barAtual()
+    if(contadorProgressBar >= 10) {
+        resultado(c, a)
     } else {
-        let removePergunta = document.querySelector('#pergunta')
-        c.removeChild(removePergunta)
-        removeAlternativas(a)
 
-        c.appendChild(verificarPerguntas(contadorProgressBar))
-        opções(a)
-        //barAtual()
+        if(contadorProgressBar <= 1){
+            divImg.remove()
+            descrição.remove()
+            boxName.remove()
+            btnNext.remove()
+
+            CreatProgressBar(c)
+            c.appendChild(verificarPerguntas(contadorProgressBar))
+            opções(a)
+            barAtual()
+        } else {
+            let removePergunta = document.querySelector('#pergunta')
+            c.removeChild(removePergunta)
+            removeAlternativas(a)
+
+            c.appendChild(verificarPerguntas(contadorProgressBar))
+            opções(a)
+            barAtual()
+        }
     }
 }
 
@@ -223,8 +228,7 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
         divProgressBar.appendChild(progressBar)
         progressBar.addEventListener('click', function () {
             if(progressBar.value < contadorProgressBar) {
-                let bar = +progressBar.value
-                contadorProgressBar = bar - 1
+                //contadorProgressBar = 1
                 pageLoad()
             }
         })
@@ -239,4 +243,12 @@ function barAtual() {
     barAtual.setAttribute('class', 'progressBarAtual')
 
     barPassada.setAttribute('class', 'progressBarPassada')
+}
+
+function resultado(c, a) {
+    let removePergunta = document.querySelector('#pergunta')
+    c.removeChild(removePergunta)
+    removeAlternativas(a)
+
+    
 }
