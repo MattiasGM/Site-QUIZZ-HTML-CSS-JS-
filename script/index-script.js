@@ -141,29 +141,35 @@ function initQuizz(c,b) {
 
 function page(c,a) { // página genérica de quiz
     contadorProgressBar++
+    if(contadorProgressBar <= 1){
+        divImg.remove()
+        descrição.remove()
+        boxName.remove()
+        btnNext.remove()
 
-    divImg.remove()
-    descrição.remove()
-    boxName.remove()
-    btnNext.remove()
+        c.appendChild(CreatProgressBar(c))
+        c.appendChild(verificarPerguntas(contadorProgressBar))
+        opções(c, a)
+    } else {
+        c.remove()
+        a.remove()
 
-    c.appendChild(CreatProgressBar(c))
-    c.appendChild(verificarPerguntas(contadorProgressBar))
-    opções(a)
+        c.appendChild(verificarPerguntas(contadorProgressBar))
+        opções(c, a)
+    }
 }
 
-function opções(a) {
+function opções(c, a) {
     let contador = Object.values(verificarAlternativas(contadorProgressBar)) // alternativas em lista para o quiz
-    let opções = ''
     for(let i = 0; i < contador.length; i++){
-        opções = document.createElement('li')
+        let opções = document.createElement('li')
         opções.innerHTML = `${contador[i]}`
         opções.setAttribute('id', i)
         a.appendChild(opções)
+        opções.addEventListener('click', function() {
+            page(c,a)
+        })
     }
-    opções.addEventListener('click', function() {
-        alert(opções.id)
-    })
 }
 
 function verificarAlternativas(cpb) {
