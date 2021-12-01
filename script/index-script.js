@@ -148,27 +148,23 @@ function page(c,a) { // página genérica de quiz
     btnNext.remove()
 
     c.appendChild(CreatProgressBar(c))
-    let boasVindas = document.createElement('p')
-    let pergunta = document.createElement('h1')
-    pergunta.setAttribute('id', 'pergunta')
-
-    boasVindas.innerHTML = `Bem-Vindo, ${nome}.`
-    pergunta.appendChild(boasVindas)
-    pergunta.innerHTML += `${verificarPerguntas(contadorProgressBar)}`
-    
-    c.appendChild(pergunta)
+    c.appendChild(verificarPerguntas(contadorProgressBar))
     opções(a)
 }
 
 function opções(a) {
     let contador = Object.values(verificarAlternativas(contadorProgressBar)) // alternativas em lista para o quiz
+    let opções = ''
     for(let i = 0; i < contador.length; i++){
-        let opções = document.createElement('li')
-        opções.innerText = `${contador[i]}`
+        opções = document.createElement('li')
+        opções.innerHTML = `${contador[i]}`
+        opções.setAttribute('id', i)
         a.appendChild(opções)
     }
+    opções.addEventListener('click', function() {
+        alert(opções.id)
+    })
 }
-
 
 function verificarAlternativas(cpb) {
     for(let i = 1; i <= max; i++) {
@@ -180,9 +176,12 @@ function verificarAlternativas(cpb) {
 }
 
 function verificarPerguntas(cpb) {
+    let pergunta = document.createElement('h1')
+    pergunta.setAttribute('id', 'pergunta')
+
     for(let i = 1; i <= max; i++) {
         if(cpb == i) {
-            let pergunta = perguntas[i]
+            pergunta.innerHTML = perguntas[i]
             return pergunta
         }
     }
