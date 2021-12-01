@@ -19,7 +19,7 @@ let perguntas = {
         7: 'Você se considera',
         8: 'Você confia fácil nos outros?',
         9: 'Qual você gosta mais?',
-        10: ''
+        10: 'Você é Gay'
     },
     alternativas = {
         1: {
@@ -140,28 +140,32 @@ function initQuizz(c,b) {
 }
 
 function page(c,a) { // página genérica de quiz
+    alert(contadorProgressBar)
     contadorProgressBar++
+    alert(contadorProgressBar)
+
     if(contadorProgressBar <= 1){
         divImg.remove()
         descrição.remove()
         boxName.remove()
         btnNext.remove()
 
-        c.appendChild(CreatProgressBar(c))
+        CreatProgressBar(c)
         c.appendChild(verificarPerguntas(contadorProgressBar))
-        opções(c, a)
+        opções(a)
+        //barAtual()
     } else {
         let removePergunta = document.querySelector('#pergunta')
         c.removeChild(removePergunta)
         removeAlternativas(a)
 
-
         c.appendChild(verificarPerguntas(contadorProgressBar))
-        opções(c, a)
+        opções(a)
+        //barAtual()
     }
 }
 
-function opções(c, a) {
+function opções(a) {
     let contador = Object.values(verificarAlternativas(contadorProgressBar)) // alternativas em lista para o quiz
     for(let i = 0; i < contador.length; i++){
         let opções = document.createElement('li')
@@ -169,15 +173,15 @@ function opções(c, a) {
         opções.setAttribute('id', i)
         a.appendChild(opções)
         opções.addEventListener('click', function() {
-            page(c,a)
+            pageLoad()
         })
     }
 }
 
 function removeAlternativas(a) {
-    let contador = Object.values(verificarAlternativas(contadorProgressBar)) // alternativas em lista para o quiz
+    let contador = Object.values(verificarAlternativas(contadorProgressBar - 1)) // alternativas em lista para o quiz
     for(let i = 0; i < contador.length; i++){
-        let removeAlternativa = document.querySelector('li#0')
+        let removeAlternativa = document.getElementById(i)
         a.removeChild(removeAlternativa)
     }
 }
@@ -215,10 +219,26 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
             progressBar.setAttribute('id', `progressBar${i}`)
         } else {
             progressBar.setAttribute('value', 'AD')
-            progressBar.setAttribute('id', `progressBarAD`)
+            progressBar.setAttribute('id', `progressBar${i}`)
         }
         progressBar.setAttribute('class', 'progressBar')
         divProgressBar.appendChild(progressBar)
+        progressBar.addEventListener('click', function () {
+            if(progressBar.value < contadorProgressBar) {
+                let bar = +progressBar.value
+                contadorProgressBar = bar - 1
+                pageLoad()
+            }
+        })
     }
-    return divProgressBar
+    c.appendChild(divProgressBar)
+}
+
+function barAtual() {
+    let barAtual = document.getElementById(`progressBar${contadorProgressBar}`)
+    let barPassada = document.getElementById(`progressBar${contadorProgressBar - 1}`)
+
+    barAtual.setAttribute('class', 'progressBarAtual')
+
+    barPassada.setAttribute('class', 'progressBarPassada')
 }
