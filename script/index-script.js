@@ -140,9 +140,7 @@ function initQuizz(c,b) {
 }
 
 function page(c,a) { // página genérica de quiz
-    alert(contadorProgressBar)
     contadorProgressBar++
-    alert(contadorProgressBar)
 
     if(contadorProgressBar <= 1){
         divImg.remove()
