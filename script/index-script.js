@@ -151,8 +151,10 @@ function page(c,a) { // página genérica de quiz
         c.appendChild(verificarPerguntas(contadorProgressBar))
         opções(c, a)
     } else {
-        c.remove()
-        a.remove()
+        let removePergunta = document.querySelector('#pergunta')
+        c.removeChild(removePergunta)
+        removeAlternativas(a)
+
 
         c.appendChild(verificarPerguntas(contadorProgressBar))
         opções(c, a)
@@ -169,6 +171,14 @@ function opções(c, a) {
         opções.addEventListener('click', function() {
             page(c,a)
         })
+    }
+}
+
+function removeAlternativas(a) {
+    let contador = Object.values(verificarAlternativas(contadorProgressBar)) // alternativas em lista para o quiz
+    for(let i = 0; i < contador.length; i++){
+        let removeAlternativa = document.querySelector('li#0')
+        a.removeChild(removeAlternativa)
     }
 }
 
