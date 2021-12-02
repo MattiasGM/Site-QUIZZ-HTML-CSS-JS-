@@ -7,7 +7,7 @@ let imgQuiz = 'imagens/round-6.jpg'
 let max = 10 // quantas perguntas o quiz vai possuir -- + de 10 ele pode ter 2 linhas ou mais de progressBar
 //------------------------------------------------\\
 
-let nome = '', contadorProgressBar = 0
+let nome = '', contadorProgressBar = 0, result = []
 
 let perguntas = {
         1: 'Você Acha Que Ganharia Quais Jogos?',
@@ -142,8 +142,9 @@ function initQuizz(c,b) {
 function page(c,a) { // página genérica de quiz
     contadorProgressBar++
 
-    if(contadorProgressBar >= 10) {
+    if(contadorProgressBar >= max) {
         resultado(c, a)
+        barAtual()
     } else {
 
         if(contadorProgressBar <= 1){
@@ -176,6 +177,7 @@ function opções(a) {
         opções.setAttribute('id', i)
         a.appendChild(opções)
         opções.addEventListener('click', function() {
+            result.push(opções.id)
             pageLoad()
         })
     }
@@ -250,5 +252,95 @@ function resultado(c, a) {
     c.removeChild(removePergunta)
     removeAlternativas(a)
 
-    
+    if(result[2] == 0) {
+        if(result[3] == 0) {
+            if(result[4] == 0){
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            } else {
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            }
+        } else {
+            if(result[4] == 0){
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            } else {
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            }
+        }
+    } else if(result[2] == 1) {
+        if(result[3] == 0) {
+            if(result[4] == 0){
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            } else {
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            }
+        } else {
+            if(result[4] == 0){
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            } else {
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            }
+        }
+    } else{
+        if(result[3] == 0) {
+            if(result[4] == 0){
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            } else {
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            }
+        } else {
+            if(result[4] == 0){
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            } else {
+                if(result[5] == 0){
+
+                } else {
+                    
+                }
+            }
+        }
+    }
 }
