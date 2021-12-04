@@ -236,8 +236,9 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
                     result.pop()
                 }
             }
-            contadorProgressBar = document.getElementById(`progressBar${progressBar.value}`)
-            contadorProgressBar = Number(contadorProgressBar.value)
+            let cPB = document.getElementById(`progressBar${progressBar.value}`)
+            contadorProgressBar = Number(cPB.value - 1)
+            pageLoad()
         })
     }
     c.appendChild(divProgressBar)
