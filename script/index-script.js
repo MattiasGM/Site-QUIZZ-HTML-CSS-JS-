@@ -229,9 +229,12 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
         progressBar.setAttribute('class', 'progressBar')
         divProgressBar.appendChild(progressBar)
         progressBar.addEventListener('click', function () {
-            if(progressBar.value < contadorProgressBar) {
-                //contadorProgressBar = 1
-                pageLoad()
+            for(let i = 0; i <= max; i++) {
+                if(progressBar.value < i) {
+                    let pB = document.getElementById(`progressBar${i}`)
+                    pB.setAttribute('class', 'progressBar')
+                    result.pop()
+                }
             }
         })
     }
@@ -255,4 +258,5 @@ function resultado(c, a) {
     for(let i = 0; i < max; i++) {
         
     }
+    alert(result)
 }
