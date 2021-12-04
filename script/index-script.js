@@ -132,11 +132,6 @@ function initQuizz(c,b) {
     btnNext.addEventListener('click', function(){
         nome = document.querySelector('#boxName').value
         if(nome.length != 0) {
-            divImg.remove()
-            descrição.remove()
-            boxName.remove()
-            btnNext.remove()
-
             CreatProgressBar(c)
             pageLoad()
         } else {
@@ -152,6 +147,11 @@ function page(c,a) { // página genérica de quiz
         resultado(c, a)
         barAtual()
     } else {
+        divImg.remove()
+        descrição.remove()
+        boxName.remove()
+        btnNext.remove()
+
         let removePergunta = document.querySelector('#pergunta')
         c.removeChild(removePergunta)
         removeAlternativas(a)
