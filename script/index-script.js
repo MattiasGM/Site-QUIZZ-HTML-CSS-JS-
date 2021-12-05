@@ -7,7 +7,7 @@ let imgQuiz = 'imagens/round-6.jpg'
 let max = 10 // quantas perguntas o quiz vai possuir -- + de 10 ele pode ter 2 linhas ou mais de progressBar
 //------------------------------------------------\\
 
-let nome = '', contadorProgressBar = 0, result = []
+let iniciar = false, pageOne = true, contadorProgressBar = 0, result = []
 
 let perguntas = {
         1: 'Você Acha Que Ganharia Quais Jogos?',
@@ -87,10 +87,10 @@ function pageLoad() {
     let alternativas = document.querySelector('#ulRespostas')
     let btnNext = document.querySelector('#divBtnNext')
     
-    if(nome.length == 0) {
-        initQuizz(conteudo, btnNext)
-    } else {
+    if(iniciar) {
         page(conteudo, alternativas)
+    } else {
+        initQuizz(conteudo, btnNext)
     }
 }
 
@@ -101,16 +101,12 @@ function initQuizz(c,b) {
     let descrição = document.createElement('div')
     let descriçãoTitulo = document.createElement('h2')
     let descriçãoParagrafo = document.createElement('p')
-    let nomeInput = document.createElement('input')
     let btnNext = document.createElement('input')
     
     divImg.setAttribute('id', 'divImg')
     img.setAttribute('src', imgQuiz)
     titulo.setAttribute('id', 'titulo')
     descrição.setAttribute('id', 'descrição')
-    nomeInput.setAttribute('id', 'boxName')
-    nomeInput.setAttribute('placeholder', 'Digite seu nome aqui')
-    nomeInput.setAttribute('maxlength', '20')
     btnNext.setAttribute('type', 'button')
     btnNext.setAttribute('id', 'btnNext')
     btnNext.setAttribute('value', 'Iniciar Quiz')
@@ -126,17 +122,17 @@ function initQuizz(c,b) {
 
     c.appendChild(divImg)
     c.appendChild(descrição)
-    c.appendChild(nomeInput)
     b.appendChild(btnNext)
 
     btnNext.addEventListener('click', function(){
-        nome = document.querySelector('#boxName').value
-        if(nome.length != 0) {
-            CreatProgressBar(c)
-            pageLoad()
-        } else {
-            alert('[ERRO] Caixa Vazia')
-        }
+        iniciar = true
+        
+        divImg.remove()
+        descrição.remove()
+        btnNext.remove()
+
+        CreatProgressBar(c)
+        pageLoad()
     }) 
 }
 
@@ -147,23 +143,21 @@ function page(c,a) { // página genérica de quiz
         resultado(c, a)
         barAtual()
     } else {
-        divImg.remove()
-        descrição.remove()
-        boxName.remove()
-        btnNext.remove()
-
-        let removePergunta = document.querySelector('#pergunta')
-        c.removeChild(removePergunta)
-        removeAlternativas(a)
-
-        c.appendChild(verificarPerguntas(contadorProgressBar))
+        if(pageOne) {
+            pageOne = false
+        } else {
+            let removePergunta = document.querySelector('#pergunta')
+            c.removeChild(removePergunta)
+            removeAlternativas(a)
+        }
+        verificarPerguntas(c, contadorProgressBar)
         opções(a)
         barAtual()
     }
 }
 
 function opções(a) {
-    let contador = Object.values(verificarAlternativas(contadorProgressBar)) // alternativas em lista para o quiz
+    let contador = Object.values(alternativas[contadorProgressBar]) // alternativas em lista para o quiz
     for(let i = 0; i < contador.length; i++){
         let opções = document.createElement('li')
         opções.innerHTML = `${contador[i]}`
@@ -177,32 +171,18 @@ function opções(a) {
 }
 
 function removeAlternativas(a) {
-    let contador = Object.values(verificarAlternativas(contadorProgressBar - 1)) // alternativas em lista para o quiz
+    let contador = Object.values(alternativas[contadorProgressBar - 1]) // alternativas em lista para o quiz
     for(let i = 0; i < contador.length; i++){
         let removeAlternativa = document.getElementById(i)
         a.removeChild(removeAlternativa)
     }
 }
 
-function verificarAlternativas(cpb) {
-    for(let i = 1; i <= max; i++) {
-        if(cpb == i) {
-            let alternativa = alternativas[i]
-            return alternativa
-        }
-    }
-}
-
-function verificarPerguntas(cpb) {
+function verificarPerguntas(c, cpb) {
     let pergunta = document.createElement('h1')
     pergunta.setAttribute('id', 'pergunta')
-
-    for(let i = 1; i <= max; i++) {
-        if(cpb == i) {
-            pergunta.innerHTML = perguntas[i]
-            return pergunta
-        }
-    }
+    pergunta.innerHTML = perguntas[cpb]
+    c.appendChild(pergunta)
 }
 
 function CreatProgressBar(c) { // barra de contagem das perguntas
@@ -230,6 +210,7 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
                 }
             }
             let cPB = document.getElementById(`progressBar${progressBar.value}`)
+            cPB.setAttribute('class', 'progressBarAtual')
             contadorProgressBar = Number(cPB.value - 1)
             pageLoad()
         })
@@ -251,8 +232,11 @@ function resultado(c, a) {
     c.removeChild(removePergunta)
     removeAlternativas(a)
 
-    for(let i = 0; i < max; i++) {
-        
+    for(let i = 1; i < max; i++) {
+        let cont = Object.values()
+        for(let n = 0; n < max; n++) {
+
+        }
     }
     alert(result)
 }
