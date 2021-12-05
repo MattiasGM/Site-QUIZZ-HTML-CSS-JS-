@@ -7,7 +7,7 @@ let imgQuiz = 'imagens/round-6.jpg'
 let max = 10 // quantas perguntas o quiz vai possuir -- + de 10 ele pode ter 2 linhas ou mais de progressBar
 //------------------------------------------------\\
 
-let iniciar = false, pageOne = true, contadorProgressBar = 0, result = []
+let iniciar = false, pageOne = true, resetBar = false, contadorProgressBar = 0, result = []
 
 let perguntas = {
         1: 'Você Acha Que Ganharia Quais Jogos?',
@@ -202,24 +202,36 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
         progressBar.setAttribute('class', 'progressBar')
         divProgressBar.appendChild(progressBar)
         progressBar.addEventListener('click', function () {
-            for(let i = 1; i < max; i++) {
-                contadorProgressBar = i
-                barAtual()
-            }
+            resetBar = true
+            barAtual(progressBar)
             pageLoad()
         })
     }
     c.appendChild(divProgressBar)
 }
 
-function barAtual() {
+function barAtual(p) {
     let barPassada = document.getElementById(`progressBar${contadorProgressBar - 1}`)
     let barAtual = document.getElementById(`progressBar${contadorProgressBar}`)
-    let barProximo = document.getElementById(`progressBar${contadorProgressBar + 1}`)
 
-    barPassada.setAttribute('class', 'progressBarPassada')
-    barAtual.setAttribute('class', 'progressBarAtual')
-    barProximo.setAttribute('class', 'progressBar')
+    if(!resetBar) {
+        barPassada.setAttribute('class', 'progressBarPassada')
+        barAtual.setAttribute('class', 'progressBarAtual')
+    } else {
+        resetBar = false
+        for(let i = 0; i < max; i++) {
+            if(p.value < i) {
+                barAtual = document.getElementById(`progressBar${i}`)
+                barAtual.setAttribute('class', 'progressBar')
+                result.pop()
+            } else if(p.value == i) {
+                barAtual = document.getElementById(`progressBar${i}`)
+                barAtual.setAttribute('class', 'progressBarAtual')
+                result.pop()
+                contadorProgressBar = i - 1
+            }
+        }
+    }
 }
 
 function resultado(c, a) {
