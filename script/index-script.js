@@ -202,16 +202,10 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
         progressBar.setAttribute('class', 'progressBar')
         divProgressBar.appendChild(progressBar)
         progressBar.addEventListener('click', function () {
-            for(let i = 0; i <= max; i++) {
-                if(progressBar.value < i) {
-                    let pB = document.getElementById(`progressBar${i}`)
-                    pB.setAttribute('class', 'progressBar')
-                    result.pop()
-                }
+            for(let i = 1; i < max; i++) {
+                contadorProgressBar = i
+                barAtual()
             }
-            let cPB = document.getElementById(`progressBar${progressBar.value}`)
-            cPB.setAttribute('class', 'progressBarAtual')
-            contadorProgressBar = Number(cPB.value - 1)
             pageLoad()
         })
     }
@@ -219,12 +213,13 @@ function CreatProgressBar(c) { // barra de contagem das perguntas
 }
 
 function barAtual() {
-    let barAtual = document.getElementById(`progressBar${contadorProgressBar}`)
     let barPassada = document.getElementById(`progressBar${contadorProgressBar - 1}`)
-
-    barAtual.setAttribute('class', 'progressBarAtual')
+    let barAtual = document.getElementById(`progressBar${contadorProgressBar}`)
+    let barProximo = document.getElementById(`progressBar${contadorProgressBar + 1}`)
 
     barPassada.setAttribute('class', 'progressBarPassada')
+    barAtual.setAttribute('class', 'progressBarAtual')
+    barProximo.setAttribute('class', 'progressBar')
 }
 
 function resultado(c, a) {
@@ -232,11 +227,26 @@ function resultado(c, a) {
     c.removeChild(removePergunta)
     removeAlternativas(a)
 
-    for(let i = 1; i < max; i++) {
-        let cont = Object.values()
-        for(let n = 0; n < max; n++) {
+    let random = Math.floor(Math.random() * 10)
+    let contA = Object.values(alternativas[9])
 
+    let resultado = document.createElement('p')
+    resultado.setAttribute('id', 'pergunta')
+    resultado.innerHTML = `Você seria o(a): ${contA[random]}`
+
+    c.appendChild(resultado)
+
+    /*
+    for(let i = 1; i < max; i++) {
+        
+
+        let contA = Object.values(alternativas[i])
+        for(let n = 0; n < contA.length; n++) {
+            let cont = Object.values(result[n])
+            if() {
+
+            }
         }
     }
-    alert(result)
+    */
 }
